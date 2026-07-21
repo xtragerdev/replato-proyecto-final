@@ -279,7 +279,7 @@ Authorization: Bearer <token>
 
 Filtros disponibles en `GET /food-packs`: `search`, `category`, `city`, `establishment`, `featured`, `page`, `limit` y `sort` (`pickup`, `price` o `newest`).
 
-Para crear o editar un pack con imagen se envía `multipart/form-data`. El campo de fichero se llama `image`; se permiten JPG, PNG y WebP de hasta 5 MB.
+Para crear o editar un pack con imagen se envía `multipart/form-data`. El campo de fichero se llama `image`; se permiten JPG, PNG y WebP de hasta 4 MB.
 
 ### Reservas
 

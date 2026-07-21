@@ -2,6 +2,7 @@
   "name": "replato-proyecto-final",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "description": "Plataforma full stack para rescatar excedentes alimentarios",
   "author": "xtragerdev",
   "workspaces": [
@@ -14,7 +15,7 @@
     "start": "npm run start -w server",
     "seed": "npm run seed -w server",
     "test": "npm run test -w server && npm run test -w client",
-    "lint": "oxlint client/src server/src",
+    "lint": "oxlint api client/src server/src",
     "check": "npm run lint && npm run test && npm run build"
   },
   "devDependencies": {
@@ -22,4 +23,3 @@
     "oxlint": "latest"
   }
 }
-

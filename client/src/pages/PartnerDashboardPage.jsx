@@ -22,7 +22,7 @@ import { EmptyState, ErrorState, LoadingState } from '../components/common/Statu
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js'
 import { formatPickup, formatPrice, reservationStatusLabel } from '../utils/format.js'
 
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024
+const MAX_IMAGE_SIZE = 4 * 1024 * 1024
 const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 
 const offerSchema = z.object({
@@ -41,7 +41,7 @@ const offerSchema = z.object({
   impactCo2Grams: z.coerce.number().int().min(0).max(100000),
   image: z.any().optional().refine(
     (files) => !files?.length || files[0].size <= MAX_IMAGE_SIZE,
-    'La imagen no puede superar los 5 MB',
+    'La imagen no puede superar los 4 MB',
   ).refine(
     (files) => !files?.length || IMAGE_TYPES.includes(files[0].type),
     'Utiliza una imagen JPG, PNG o WebP',
@@ -317,7 +317,7 @@ export default function PartnerDashboardPage() {
                   </label>
                   <label className="form-field form-field-wide file-field"><span><ImageUp size={20} /> Imagen del pack</span>
                     <input type="file" accept="image/jpeg,image/png,image/webp" {...register('image')} />
-                    <small>JPG, PNG o WebP. Máximo 5 MB. Se subirá de forma segura a Cloudinary.</small>
+                    <small>JPG, PNG o WebP. Máximo 4 MB. Se subirá de forma segura a Cloudinary.</small>
                     <FieldError error={errors.image} />
                   </label>
                   <div className="form-actions form-field-wide">
