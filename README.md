@@ -11,15 +11,14 @@ La aplicación combina una API REST desarrollada con Node.js, Express y MongoDB 
 
 ## Enlaces de entrega
 
-Las direcciones definitivas se añaden después del primer despliegue, ya que Render y Vercel las asignan al crear cada servicio.
-
 | Recurso | Dirección |
 | --- | --- |
-| Frontend | Pendiente de asignar en Vercel |
-| API | Pendiente de asignar en Render |
-| Estado de la API | `{URL_API}/api/health` |
+| Aplicación | [https://replato-proyecto-final.vercel.app](https://replato-proyecto-final.vercel.app) |
+| API | [https://replato-proyecto-final.vercel.app/api](https://replato-proyecto-final.vercel.app/api) |
+| Estado de la API | [https://replato-proyecto-final.vercel.app/api/health](https://replato-proyecto-final.vercel.app/api/health) |
+| Repositorio | [https://github.com/xtragerdev/replato-proyecto-final](https://github.com/xtragerdev/replato-proyecto-final) |
 
-No se incluyen credenciales privadas ni direcciones de despliegue ficticias en este documento.
+El frontend y la API comparten dominio. Las credenciales privadas se configuran directamente en Vercel y no forman parte del repositorio.
 
 ## Funcionalidades principales
 
@@ -440,7 +439,7 @@ Antes de entregar se recomienda ejecutar:
 npm run check
 ```
 
-La suite incluye 17 pruebas automatizadas: 7 del servidor y 10 del cliente. El backend comprueba el endpoint de salud, la respuesta de rutas inexistentes, la validación de entradas y las reglas del dataset; verifica que hay 364 registros, 120 ofertas y que una relación rota se detecta antes de escribir en MongoDB. El cliente valida hooks, guardas por sesión y rol, tarjetas reutilizables y los flujos de login y registro con Vitest, jsdom y Testing Library.
+La suite incluye 19 pruebas automatizadas: 9 del servidor y 10 del cliente. El backend comprueba el endpoint de salud, la respuesta de rutas inexistentes, la validación de entradas, el adaptador de rutas de producción y las reglas del dataset; verifica que hay 364 registros, 120 ofertas y que una relación rota se detecta antes de escribir en MongoDB. El cliente valida hooks, guardas por sesión y rol, tarjetas reutilizables y los flujos de login y registro con Vitest, jsdom y Testing Library.
 
 Además de las pruebas automatizadas, la API aplica:
 
@@ -455,38 +454,32 @@ Además de las pruebas automatizadas, la API aplica:
 
 ## Despliegue
 
-### API en Render
+### Aplicación full stack en Vercel
 
-El archivo `render.yaml` define un servicio web Node con:
+El despliegue utiliza un único dominio. `vercel.json` construye el workspace `client`, publica `client/dist`, conserva el enrutado de React y envía `/api/*` a una función Node que ejecuta Express. La conexión de Mongoose se reutiliza entre invocaciones para evitar conexiones innecesarias en cada petición.
 
-- Build: `npm install`
-- Inicio: `npm run start -w server`
-- Health check: `/api/health`
-
-En Render deben configurarse `MONGODB_URI`, `CLIENT_URL` y las tres variables de Cloudinary. `JWT_SECRET` puede generarse desde el blueprint. No se deben pegar secretos en el repositorio.
-
-Para cargar MongoDB Atlas desde Render, abre una Shell del servicio, define `ALLOW_SEED=true` solo durante la operación, ejecuta `npm run seed` y retira después esa variable. También se puede ejecutar la semilla desde local apuntando a Atlas.
-
-### Frontend en Vercel
-
-`vercel.json` instala desde la raíz, construye el workspace `client`, publica `client/dist` y redirige las rutas de la SPA a `index.html`.
-
-En Vercel debe definirse:
+Variables configuradas en producción:
 
 ```dotenv
-VITE_API_URL=<URL-REAL-DE-RENDER>/api
+MONGODB_URI=<conexion-mongodb-atlas>
+JWT_SECRET=<secreto-seguro>
+CLIENT_URL=https://replato-proyecto-final.vercel.app
+CLOUDINARY_CLOUD_NAME=<cloud-name>
+CLOUDINARY_API_KEY=<api-key>
+CLOUDINARY_API_SECRET=<api-secret>
 ```
 
-El marcador debe sustituirse por la URL real asignada al backend. Una vez publicado el frontend, su origen real se configura como `CLIENT_URL` en Render para que CORS lo permita.
+El frontend utiliza `/api` en producción, por lo que no necesita `VITE_API_URL`. `.vercelignore` excluye credenciales, dependencias, builds locales y logs antes de cada publicación.
 
-Orden recomendado:
+Para reproducir el despliegue:
 
-1. Crear MongoDB Atlas y configurar acceso de red y usuario de aplicación.
-2. Publicar el backend en Render y comprobar `/api/health`.
-3. Ejecutar la semilla contra Atlas.
-4. Publicar el frontend en Vercel con `VITE_API_URL` apuntando a Render.
-5. Actualizar `CLIENT_URL` en Render con el dominio de Vercel.
-6. Sustituir la tabla **Enlaces de entrega** por las dos direcciones reales.
+1. Crear el proyecto de Vercel desde la raíz del repositorio.
+2. Configurar las variables anteriores para el entorno Production.
+3. Permitir el acceso de red necesario en MongoDB Atlas.
+4. Ejecutar `npm run seed` una vez contra Atlas.
+5. Publicar con `vercel deploy --prod` y comprobar `/api/health`.
+
+La versión pública se verificó con el catálogo, rutas profundas de React, login de los tres roles, paneles protegidos y subida/eliminación de una imagen en Cloudinary.
 
 ## Criterios cubiertos
 
