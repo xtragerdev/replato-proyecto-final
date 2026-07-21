@@ -1,0 +1,73 @@
+@import './base.css';
+@import './components.css';
+@import './pages.css';
+@import './responsive.css';
+
+:root {
+  /* Colores */
+  --color-ink: #17352f;
+  --color-ink-soft: #47605b;
+  --color-brand-950: #0d2924;
+  --color-brand-900: #173f36;
+  --color-brand-800: #205247;
+  --color-brand-700: #2d6a5b;
+  --color-brand-600: #3c806e;
+  --color-brand-100: #dcece5;
+  --color-brand-50: #eef7f2;
+  --color-accent-700: #bd4c1b;
+  --color-accent-600: #dc6329;
+  --color-accent-500: #f27b3d;
+  --color-accent-100: #ffe2ce;
+  --color-accent-50: #fff2e8;
+  --color-sun: #f5bd4f;
+  --color-cream: #f7f3e9;
+  --color-paper: #fffdf8;
+  --color-white: #ffffff;
+  --color-line: #dfe5dd;
+  --color-line-strong: #cbd6ce;
+  --color-muted: #6e7f7a;
+  --color-danger: #b33a3a;
+  --color-danger-soft: #fff0ed;
+  --color-success: #287357;
+  --color-success-soft: #e7f5ee;
+  --color-warning: #9a6414;
+  --color-warning-soft: #fff6da;
+
+  /* Espaciado */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+  --space-10: 4rem;
+  --space-11: 5rem;
+  --space-12: 6.5rem;
+
+  /* Tipografía */
+  --font-sans: 'Manrope', 'Segoe UI', sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.35rem;
+  --text-2xl: clamp(1.7rem, 4vw, 2.4rem);
+  --text-3xl: clamp(2.2rem, 6vw, 4.5rem);
+
+  /* Forma y profundidad */
+  --radius-sm: 0.65rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+  --shadow-sm: 0 5px 18px rgb(23 53 47 / 7%);
+  --shadow-md: 0 18px 46px rgb(23 53 47 / 11%);
+  --shadow-lg: 0 28px 72px rgb(13 41 36 / 18%);
+  --transition-fast: 160ms ease;
+  --transition-base: 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --container: 1180px;
+  --header-height: 76px;
+}

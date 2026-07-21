@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="RePlato">
+  <rect width="64" height="64" rx="18" fill="#2d6a5b"/>
+  <path d="M44.5 25.5A15 15 0 1 0 46 38" fill="none" stroke="#fffdf8" stroke-width="6" stroke-linecap="round"/>
+  <path d="m42 32 5.5 6 5.5-6" fill="none" stroke="#f5bd4f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M25 30c5-1 9 1 11 6-6 1-10-1-11-6Z" fill="#f5bd4f"/>
+</svg>
