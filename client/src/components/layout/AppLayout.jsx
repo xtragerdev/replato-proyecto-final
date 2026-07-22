@@ -6,7 +6,11 @@ import { MobileNav } from './MobileNav.jsx'
 
 export function AppLayout() {
   const { pathname } = useLocation()
-  useEffect(() => window.scrollTo({ top: 0, behavior: 'instant' }), [pathname])
+
+  useEffect(() => {
+    void window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [pathname])
+
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">Saltar al contenido</a>
@@ -17,4 +21,3 @@ export function AppLayout() {
     </div>
   )
 }
-
